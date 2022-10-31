@@ -7,21 +7,23 @@ import {computed, ref} from "vue";
 export const useStore = defineStore('main', () => {
     const todos = ref([])
 
-    function setTodos(todos) {
-        todos.value = todos
+    function setTodos() {
+        const tds = JSON.parse(localStorage.getItem('todos')) || []
+        todos.value = tds
     }
     function saveToLocal(){
-        localStorage.setItem('todos',JSON.stringify(todos))
+        localStorage.setItem('todos',JSON.stringify(todos.value))
     }
     function addTodo(title){
         todos.value.push({id:Date.now(),title:title,status:false})
         saveToLocal()
     }
     const finished = computed(() => {
-        return todos.filter(item => item.status === true)
+       return todos.value.filter(item => item.status === true)
+
     })
     const unFinished = computed(() => {
-        return todos.filter(item => item.status === false)
+        return todos.value.filter(item => item.status === false)
     })
     return {todos, finished, unFinished,addTodo,setTodos}
 })

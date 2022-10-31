@@ -5,9 +5,9 @@ import {useStore} from "../store/index.js";
 
 const store=useStore()
 const {todos,addTodo}=store
-
 const title=ref('')
 
+console.log(props)
 </script>
 
 <template>

@@ -1,11 +1,16 @@
 <script setup>
 import Item2 from "./components/Item2.vue";
 import {useStore} from "./store/index.js";
-import {onMounted} from "vue";
+import {onMounted, ref} from "vue";
+import { storeToRefs } from 'pinia'
 
+onMounted(()=>{
+  const {setTodos}=store
+  setTodos()
+})
 
 const store=useStore()
-const {todos}=store
+const {todos}=storeToRefs(store)
 
 
 
@@ -15,7 +20,9 @@ const {todos}=store
 
 
 <div class="box">
-  <item2 :item="todo"/>
+<!--  <item2/>-->
+  <h1 v-for="item in todos">11</h1>
+  <item2 v-for="item in todos" :item="item"/>
 </div>
 
 </template>
