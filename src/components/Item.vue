@@ -1,6 +1,6 @@
 <script setup>
-
-import {ref, watch} from 'vue'
+import 'animate.css';
+import {ref} from 'vue'
 import {useStore} from "../store/index.js";
 import {storeToRefs} from "pinia";
 
@@ -41,7 +41,7 @@ const add = (t) => {
     </div>
 
     <div v-show="item.title" class="content">{{ item.title }}asd</div>
-    <input v-show="!item.title" @keyup.enter="add(title)" class="content-input" maxlength="50" v-model="title">
+    <input v-show="!item.title" @keyup.enter="()=>{if(title)add(title)}" class="content-input" maxlength="50" v-model="title">
     <div v-show="item.title!==''" @click="deleteItem(item.id)">删除</div>
   </div>
 </template>

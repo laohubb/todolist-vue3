@@ -23,13 +23,18 @@ watch(todos,
 </script>
 
 <template>
-
-
   <div class="box">
     <item2 :item="blankItem"/>
     <item2 v-for="item in unFinished" :item="item"/>
     <h3 @click="visible=!visible">已完成</h3>
-    <item2 v-for="item in finished" :item="item"/>
+    <transition
+        enter-active-class="animate__fadeInDown"
+        leave-active-class="animate__fadeInDown">
+      <div v-show="visible">
+        <item2 v-for="item in finished" :item="item"/>
+      </div>
+    </transition>
+
   </div>
 
 </template>
@@ -64,7 +69,9 @@ body {
       font-size: 20px;
     }
   }
-
+  h3{
+    cursor: default;
+  }
 
 }
 </style>
