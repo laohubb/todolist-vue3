@@ -39,7 +39,7 @@ const add = (t) => {
 
     <div v-show="item.title" class="content">{{ item.title }}</div>
     <input v-show="!item.title" @keyup.enter="()=>{if(title)add(title)}" class="content-input" maxlength="50" v-model="title">
-    <div v-show="item.title!==''" @click="deleteItem(item.id)">删除</div>
+    <div class="delete" v-show="item.title!==''" @click="deleteItem(item.id)"><h5>删除</h5></div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -81,6 +81,16 @@ const add = (t) => {
     outline: none;
     font-size: 20px;
 
+  }
+
+  .delete{
+    //border: 1px solid red;
+    cursor: pointer;
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

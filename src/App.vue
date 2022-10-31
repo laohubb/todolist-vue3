@@ -43,7 +43,11 @@ watch(todos,
 
 
 .box {
+  @media(max-width: 768px) {
+    margin: 20px 1rem;
+  }
   margin: 20px 150px;
+
   background-color: #faf9f8;
   .item {
     display: flex;
