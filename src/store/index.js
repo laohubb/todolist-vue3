@@ -6,14 +6,14 @@ export const useStore = defineStore('main', () => {
 
     function setTodos() {
         const tds = JSON.parse(localStorage.getItem('todos')) || []
-        todos.value = tds
+        todos.value = tds.sort((a, b) => b.id - a.id)
     }
     function saveToLocal(){
         localStorage.setItem('todos',JSON.stringify(todos.value))
         console.log('保存成功')
     }
     function addTodo(t){
-        todos.value.push({id:Date.now(),title:t,status:false})
+        todos.value.unshift({id:Date.now(),title:t,status:false})
 
     }
     function changeStatus(id) {

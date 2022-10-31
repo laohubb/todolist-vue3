@@ -2,7 +2,6 @@
 import 'animate.css';
 import {ref} from 'vue'
 import {useStore} from "../store/index.js";
-import {storeToRefs} from "pinia";
 
 const store = useStore()
 
@@ -16,8 +15,6 @@ const add = (t) => {
   addTodo(t)
   title.value = ''
 }
-
-
 </script>
 
 <template>
@@ -40,7 +37,7 @@ const add = (t) => {
       </svg>
     </div>
 
-    <div v-show="item.title" class="content">{{ item.title }}asd</div>
+    <div v-show="item.title" class="content">{{ item.title }}</div>
     <input v-show="!item.title" @keyup.enter="()=>{if(title)add(title)}" class="content-input" maxlength="50" v-model="title">
     <div v-show="item.title!==''" @click="deleteItem(item.id)">删除</div>
   </div>

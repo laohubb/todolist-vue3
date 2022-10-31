@@ -40,13 +40,11 @@ watch(todos,
 </template>
 
 <style scoped lang="scss">
-body {
-  background-color: #faf9f8;
-}
+
 
 .box {
   margin: 20px 150px;
-
+  background-color: #faf9f8;
   .item {
     display: flex;
     height: 50px;
