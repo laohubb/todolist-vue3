@@ -10,19 +10,23 @@ export const useStore = defineStore('main', () => {
     }
     function saveToLocal(){
         localStorage.setItem('todos',JSON.stringify(todos.value))
+        console.log('保存成功')
     }
     function addTodo(t){
         todos.value.push({id:Date.now(),title:t,status:false})
-        saveToLocal()
+
     }
     function changeStatus(id) {
         todos.value.forEach(item => {
             if (item.id === id) {
                 item.status = !item.status
-                console.log(item)
             }
         })
-        saveToLocal()
+
+    }
+    function deleteItem(id){
+        todos.value = todos.value.filter(item => item.id !== id)
+
     }
     const finished = computed(() => {
        return todos.value.filter(item => item.status === true)
@@ -33,5 +37,5 @@ export const useStore = defineStore('main', () => {
     })
 
 
-    return {todos, finished, unFinished,addTodo,setTodos,changeStatus}
+    return {saveToLocal,todos, finished, unFinished,addTodo,setTodos,changeStatus,deleteItem}
 })
