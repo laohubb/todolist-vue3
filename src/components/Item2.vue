@@ -1,13 +1,15 @@
 <script setup>
-const props = defineProps(['item'])
+
 import { ref } from 'vue'
 import {useStore} from "../store/index.js";
 
 const store=useStore()
 const {todos,addTodo}=store
+const {item} = defineProps(['item'])
+
+
 const title=ref('')
 
-console.log(props)
 </script>
 
 <template>
@@ -29,9 +31,12 @@ console.log(props)
             p-id="1973"></path>
       </svg>
     </div>
-<!--    <div  class="content">asdfasd</div>-->
-    <input @keyup.enter="addTodo" class="content-input" maxlength="50" v-model="title">
-    <div >删除</div>
+
+    <div v-show="item.title" class="content">{{item.title}}asd</div>
+    <input v-show="!item.title"
+           @keyup.enter="addTodo(title)"
+           class="content-input" maxlength="50" v-model="title">
+    <div v-show="item.title!==''">删除</div>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -50,7 +55,7 @@ console.log(props)
   display: flex;
   justify-content: center;
   align-items: center;
-//border: 1px solid red;
+
   height: 25px;
   width: 25px;
   margin-left: 50px;

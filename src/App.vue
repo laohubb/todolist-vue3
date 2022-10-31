@@ -1,7 +1,7 @@
 <script setup>
 import Item2 from "./components/Item2.vue";
 import {useStore} from "./store/index.js";
-import {onMounted, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import { storeToRefs } from 'pinia'
 
 onMounted(()=>{
@@ -12,7 +12,7 @@ onMounted(()=>{
 const store=useStore()
 const {todos}=storeToRefs(store)
 
-
+const blankItem=reactive({id:'',title:'',status:false})
 
 </script>
 
@@ -20,8 +20,7 @@ const {todos}=storeToRefs(store)
 
 
 <div class="box">
-<!--  <item2/>-->
-  <h1 v-for="item in todos">11</h1>
+  <item2 :item="blankItem"/>
   <item2 v-for="item in todos" :item="item"/>
 </div>
 
@@ -30,13 +29,10 @@ const {todos}=storeToRefs(store)
 <style scoped lang="scss">
 body {
   background-color: #faf9f8;
-
 }
 
 .box {
-
   margin: 20px 150px;
-
 .item {
   display: flex;
   height: 50px;

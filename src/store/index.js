@@ -14,8 +14,8 @@ export const useStore = defineStore('main', () => {
     function saveToLocal(){
         localStorage.setItem('todos',JSON.stringify(todos.value))
     }
-    function addTodo(title){
-        todos.value.push({id:Date.now(),title:title,status:false})
+    function addTodo(t){
+        todos.value.push({id:Date.now(),title:t,status:false})
         saveToLocal()
     }
     const finished = computed(() => {
