@@ -3,17 +3,16 @@ import Item2 from "./components/Item2.vue";
 import {useStore} from "./store/index.js";
 import {onMounted, reactive, ref} from "vue";
 import { storeToRefs } from 'pinia'
-
 onMounted(()=>{
   const {setTodos}=store
   setTodos()
 })
 
 const store=useStore()
-const {todos}=storeToRefs(store)
+const {todos,finished,unFinished}=storeToRefs(store)
 
 const blankItem=reactive({id:'',title:'',status:false})
-
+const visible=ref(true)
 </script>
 
 <template>
@@ -21,7 +20,9 @@ const blankItem=reactive({id:'',title:'',status:false})
 
 <div class="box">
   <item2 :item="blankItem"/>
-  <item2 v-for="item in todos" :item="item"/>
+  <item2 v-for="item in unFinished" :item="item"/>
+  <h3 @click="visible=!visible">已完成</h3>
+  <item2 v-for="item in finished" :item="item"/>
 </div>
 
 </template>

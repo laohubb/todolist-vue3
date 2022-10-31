@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import {useStore} from "../store/index.js";
 
 const store=useStore()
-const {todos,addTodo}=store
+const {todos,addTodo,changeStatus}=store
 const {item} = defineProps(['item'])
 
 
@@ -15,7 +15,7 @@ const title=ref('')
 <template>
   <div class="item">
     <div class="checkbox">
-      <svg  t="1667208511618" class="icon" viewBox="0 0 1024 1024"
+      <svg v-show="item.status" @click="changeStatus(item.id)" t="1667208511618" class="icon" viewBox="0 0 1024 1024"
            version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1816" width="32" height="32">
         <path
             d="M512 859.61428833A347.61428833 347.61428833 0 1 1 512 164.38571167a347.61428833 347.61428833 0 0 1 0 695.22857666z m0-77.24761979A270.36666854 270.36666854 0 1 0 512 241.63333146a270.36666854 270.36666854 0 0 0 0 540.73333708z"
@@ -24,7 +24,7 @@ const title=ref('')
             d="M512 512m-154.49523956 0a154.49523956 154.49523956 0 1 0 308.99047912 0 154.49523956 154.49523956 0 1 0-308.99047912 0Z"
             p-id="1818"></path>
       </svg>
-      <svg  t="1667212459658" class="icon" viewBox="0 0 1024 1024"
+      <svg v-show="!item.status" @click="changeStatus(item.id)" t="1667212459658" class="icon" viewBox="0 0 1024 1024"
            version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1972" width="32" height="32">
         <path
             d="M512 859.61428833A347.61428833 347.61428833 0 1 1 512 164.38571167a347.61428833 347.61428833 0 0 1 0 695.22857666z m0-77.24761979A270.36666854 270.36666854 0 1 0 512 241.63333146a270.36666854 270.36666854 0 0 0 0 540.73333708z"
