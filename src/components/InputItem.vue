@@ -31,7 +31,7 @@ const add = () => {
       </svg>
     </div>
     <input @keyup.enter="add(item)" class="content-input"
-          v-model="input">
+          v-model="input" maxlength="20">
   </div>
 </template>
 <style lang="scss" scoped>
