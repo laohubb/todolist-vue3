@@ -8,14 +8,25 @@ export const useStore = defineStore('main', () => {
         const tds = JSON.parse(localStorage.getItem('todos')) || []
         todos.value = tds.sort((a, b) => b.id - a.id)
     }
-    function saveToLocal(){
-        localStorage.setItem('todos',JSON.stringify(todos.value))
+
+    function saveToLocal() {
+        localStorage.setItem('todos', JSON.stringify(todos.value))
         console.log('保存成功')
     }
-    function addTodo(t){
-        todos.value.unshift({id:Date.now(),title:t,status:false})
 
+    function addTodo(t) {
+        todos.value.unshift({id: Date.now(), title: t, status: false})
     }
+
+    function editTodo(item,title) {
+       todos.value=todos.value.map(todo => {
+            if (todo.id === item.id) {
+                todo.title = title
+                return todo
+            }
+        })
+    }
+
     function changeStatus(id) {
         todos.value.forEach(item => {
             if (item.id === id) {
@@ -24,12 +35,14 @@ export const useStore = defineStore('main', () => {
         })
 
     }
-    function deleteItem(id){
+
+    function deleteItem(id) {
         todos.value = todos.value.filter(item => item.id !== id)
 
     }
+
     const finished = computed(() => {
-       return todos.value.filter(item => item.status === true)
+        return todos.value.filter(item => item.status === true)
 
     })
     const unFinished = computed(() => {
@@ -37,5 +50,5 @@ export const useStore = defineStore('main', () => {
     })
 
 
-    return {saveToLocal,todos, finished, unFinished,addTodo,setTodos,changeStatus,deleteItem}
+    return {editTodo,saveToLocal, todos, finished, unFinished, addTodo, setTodos, changeStatus, deleteItem}
 })
