@@ -13,6 +13,7 @@
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.23",
     "sass": "^1.55.0",
+    "vite-svg-loader": "^3.6.0",
     "vue": "^3.2.41"
   },
   "devDependencies": {
