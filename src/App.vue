@@ -1,5 +1,6 @@
 <script setup>
 import Item2 from "./components/Item.vue";
+import InputItem from "./components/InputItem.vue";
 import {useStore} from "./store/index.js";
 import {onMounted, reactive, ref, watch} from "vue";
 import {storeToRefs} from 'pinia'
@@ -23,7 +24,7 @@ watch(todos, (value, oldValue) => {saveToLocal()}, {deep: true})
 <template>
   <div class="box">
     <h2>待办</h2>
-    <item2 :item="blankItem"/>
+    <InputItem :item="blankItem"/>
     <item2 v-for="item in unFinished" :item="item"/>
     <h2 @click="visible=!visible">已完成
       <fold v-if="visible"/>
@@ -49,29 +50,6 @@ watch(todos, (value, oldValue) => {saveToLocal()}, {deep: true})
   margin: 100px 150px;
 
   background-color: #faf9f8;
-
-  .item {
-    display: flex;
-    height: 50px;
-    width: 100%;
-    background-color: white;
-    border: 1px solid #e6e6e6;
-    border-radius: 10px;
-    margin-bottom: 10px;
-
-    .checkbox {
-      margin-left: 50px;
-      margin-right: 20px;
-    }
-
-    .content {
-      width: 70%;
-      height: 90%;
-      border: none;
-      outline: none;
-      font-size: 20px;
-    }
-  }
 
   h2 {
     cursor: pointer;

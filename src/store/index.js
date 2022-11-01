@@ -19,7 +19,7 @@ export const useStore = defineStore('main', () => {
     }
 
     function editTodo(item,title) {
-       todos.value=todos.value.map(todo => {
+       todos.value.map(todo => {
             if (todo.id === item.id) {
                 todo.title = title
                 return todo
@@ -38,12 +38,10 @@ export const useStore = defineStore('main', () => {
 
     function deleteItem(id) {
         todos.value = todos.value.filter(item => item.id !== id)
-
     }
 
     const finished = computed(() => {
         return todos.value.filter(item => item.status === true)
-
     })
     const unFinished = computed(() => {
         return todos.value.filter(item => item.status === false)
